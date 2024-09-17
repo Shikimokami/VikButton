@@ -31,7 +31,7 @@ export default function ThemeToggle() {
       onClick={toggleDarkMode}
       variant="outline"
       size="icon"
-      className="btn rounded-2xl ml-6"
+      className="btn rounded-2xl ml-1 max-470:scale-75"
     >
       {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
       <span className="sr-only">Toggle theme</span>

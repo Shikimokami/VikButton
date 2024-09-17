@@ -10,34 +10,34 @@ export default async function Header() {
     <header className="bg-gray-300 shadow-xl text-gray-600 dark:bg-gray-800 dark:text-gray-400 pt-3 pb-3">
       <div className="container mx-auto">
         <div className="navbar">
-          <div className="flex-1">
-            <Link href="/" className="btn btn-ghost text-3xl">VikButton</Link>
+          <div className="flex-1  ">
+            <Link href="/" className="btn btn-ghost text-3xl max-629:text-lg max-470:scale-75 max-470:-mr:2">VikButton</Link>
           </div>
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1 items-center">
               {user && (
                 <>
-                  <li className="mr-3">
-                    <Link href="/create-haiku" className="btn btn-primary text-xl">
+                  <li className="max-470:mr-1 -max-470:ml-0 ">
+                    <Link href="/create-haiku" className="btn btn-primary  text-xl max-629:text-sm max-629:w-28 max-470:scale-75 ">
                       Create Objective
                     </Link>
                   </li>
-                  <li className="mr-3">
+                  <li className="max-470:mr-0 max-470:-ml-0 ">
                   </li>
-                  <li className="mr-3">
-                    <form action={logout} className="btn">
-                      <button className="text-xl"> <Power className="inline" /> Log Out</button>
+                  <li className="max-470:-mr-3 max-470:ml-0">
+                    <form action={logout} className="btn max-629:w-24 max-470:scale-75">
+                      <button className="text-xl max-629:text-sm max-629:w-24 "> <Power className="inline max-629:hidden " /> Log Out</button>
                     </form>
                   </li>
                 </>
               )}
               {!user && (
-                <li className="mr-3">
+                <li className="">
                   <Link href="/login" className="btn text-xl"> Log in</Link>
                 </li>
               )}
               <li>
-                <ThemeToggle />
+                <ThemeToggle className="ml-0" />
               </li>
             </ul>
           </div>
