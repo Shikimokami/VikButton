@@ -1,4 +1,4 @@
-import RegisterForm from '../components/registerForm'
+import RegisterForm from '../components/RegisterForm'
 import { getUserFromCookie } from '../lib/getUser'
 import Dashboard from '../components/Dashboard'
 
