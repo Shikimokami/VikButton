@@ -7,13 +7,13 @@ import ThemeToggle from "./ThemeToggle"
 export default async function Header() {
   const user = await getUserFromCookie()
   return (
-    <header className="bg-gray-300 shadow-xl text-gray-600 dark:bg-gray-800 dark:text-gray-400 pt-3 pb-3">
+    <header className="bg-gray-300 shadow-xl text-gray-600 dark:bg-gray-800 dark:text-gray-400 pt-3 pb-3 flex flex-wrap max-w-screen">
       <div className="container mx-auto">
         <div className="navbar">
           <div className="flex-1 max-470:w-[90px] ">
             <Link href="/" className="btn btn-ghost text-3xl max-629:text-lg max-470:scale-75 max-470:-mr:2">VikButton</Link>
           </div>
-          <div className="flex max-470:w-[220px]">
+          <div className="flex flex-wrap max-470:w-[300px]">
             <ul className="menu menu-horizontal px-1 items-center">
               {user && (
                 <>
@@ -36,7 +36,7 @@ export default async function Header() {
                   <Link href="/login" className="btn text-xl max-629:w-24 max-470:scale-75"> Log in</Link>
                 </li>
               )}
-              <li className="w-[40px]" >
+              <li className="w-[40px] max-470:ml-6" >
                 <ThemeToggle className="mr-0"/>
               </li>
             </ul>
