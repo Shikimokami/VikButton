@@ -7,7 +7,7 @@ export default function HaikuForm() {
 
 
     return (
-        <form action={formAction} className="max-w-xs mx-auto bg-slate-300 p-6 rounded-lg shadow-lg flex flex-col items-center">
+        <form action={formAction} className="max-w-xs mx-auto bg-slate-300 p-6 rounded-lg shadow-lg flex flex-col items-center dark:bg-gray-800 mt-6">
                 <div className="mb-4 w-full">
                     <input
                         name='objectivename'

@@ -11,7 +11,7 @@ export default async function Page() {
 
     return (
         <>
-            <h2 className="text-center text-2xl text-gray-600 mb-5">Create Timer</h2>
+            <h2 className="text-center text-2xl text-gray-600 dark:text-gray-400 mb-5 mt-52 "><strong>Create Timer</strong></h2>
             <HaikuForm />
         </>
 

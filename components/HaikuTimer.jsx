@@ -28,7 +28,16 @@ export default function HaikuTimer({ startTime, haikuId }) {
         channel.bind('haiku-updated', function (data) {
             if (data.haikuId === haikuId) {
                 console.log('Updating timer for haiku:', haikuId)
+                
+                // Actualizamos el startTime inmediatamente
                 setCurrentStartTime(data.startTime)
+
+                // Añadir un retraso de 3 segundos antes de actualizar visualmente el tiempo
+                setTimeout(() => {
+                    const now = Date.now()
+                    const elapsed = now - data.startTime
+                    setElapsedTime(elapsed)
+                }, 3000) // 3000ms = 3 segundos
             }
         })
 
