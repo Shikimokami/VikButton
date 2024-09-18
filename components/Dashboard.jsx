@@ -19,7 +19,7 @@ export default async function Dashboard(props) {
 
             <div className="flex flex-wrap justify-center gap-6 min-h max-w-screen">
                 {haikus.map((haiku, index) => (
-                    <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-3xl p-8 flex flex-col justify-between w-[50vw] min-w-[450px] min-h-[700px] max-470:scale-75">
+                    <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-3xl p-8 flex flex-col justify-between w-[50vw] min-w-[450px] min-h-[700px] max-470:scale-75 max-470:max-w-[400px]">
                         <div className="mb-6">
                             <p className="mt-4 text-4xl font-bold mb-4 text-center dark:text-gray-200">{haiku.objectivename.toUpperCase()}</p>
                         </div>
