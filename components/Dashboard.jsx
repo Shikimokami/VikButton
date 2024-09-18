@@ -17,9 +17,9 @@ export default async function Dashboard(props) {
         <div className="min-h-screen container mx-auto px-4 py-8 flex flex-col items-center dark:bg-gray-900">
             <h2 className="text-center text-3xl font-bold text-gray-800 dark:text-gray-200 mb-14">Your Timers</h2>
 
-            <div className="flex flex-wrap justify-center gap-6 min-h max-w-screen">
+            <div className="flex flex-wrap justify-center gap-6 min-h max-w-screen mx-auto">
                 {haikus.map((haiku, index) => (
-                    <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-3xl p-8 flex flex-col justify-between w-[50vw] min-w-[450px] min-h-[700px] max-470:scale-75 max-470:max-w-[400px]">
+                    <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-3xl p-8 flex flex-col justify-between w-[50vw] max-470:min-w-[350px] min-h-[700px] max-470:scale-75 max-470:max-w-[400px]">
                         <div className="mb-6">
                             <p className="mt-4 text-4xl font-bold mb-4 text-center dark:text-gray-200">{haiku.objectivename.toUpperCase()}</p>
                         </div>
@@ -32,8 +32,8 @@ export default async function Dashboard(props) {
                             </form>
                         </div>
 
-                        <div className="flex justify-between mt-6">
-                            <form action={addFriend} className="flex-shrink-0">
+                        <div className="flex justify-between mt-6 flex-wrap">
+                            <form action={addFriend} className="flex-shrink-0 max-w-full">
                                 <input type="text" autoComplete="off" className="max-1010:w-[130px] text-stone-900 bg-slate-300 dark:bg-slate-600 dark:text-white p-2 mr-2 border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 " name="friendname" placeholder="Friend's username" />
                                 <input name="id" type="hidden" defaultValue={haiku._id.toString()} />
                                 <button className="inline btn-xl max-1010:btn-md bg-blue-500 text-white p-4 rounded hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-800">
@@ -41,9 +41,9 @@ export default async function Dashboard(props) {
                                     Add friend
                                 </button>
                             </form>
-                            <form action={deleteHaiku} className="flex-shrink-0">
+                            <form action={deleteHaiku} className="flex-shrink-0 ">
                                 <input name="id" type="hidden" defaultValue={haiku._id.toString()} />
-                                <button className="btn-xl max-1010:btn-md bg-red-500 text-white p-4 rounded hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-800 inline">
+                                <button className=" btn-xl max-1010:btn-md bg-red-500 text-white p-4 rounded hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-800 inline">
                                     <Trash2 className="h-4 w-4 mr-2 inline" />
                                     Delete
                                 </button>
