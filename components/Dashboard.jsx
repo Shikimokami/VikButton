@@ -17,7 +17,7 @@ export default async function Dashboard(props) {
         <div className="min-h-screen container mx-auto px-4 py-8 flex flex-col items-center dark:bg-gray-900">
             <h2 className="text-center text-3xl font-bold text-gray-800 dark:text-gray-200 mb-14">Your Timers</h2>
 
-            <div className="flex flex-wrap justify-center gap-6 min-h">
+            <div className="flex flex-wrap justify-center gap-6 min-h max-w-screen">
                 {haikus.map((haiku, index) => (
                     <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-3xl p-8 flex flex-col justify-between w-[50vw] min-w-[450px] min-h-[700px] max-470:scale-75">
                         <div className="mb-6">

@@ -10,10 +10,10 @@ export default async function Header() {
     <header className="bg-gray-300 shadow-xl text-gray-600 dark:bg-gray-800 dark:text-gray-400 pt-3 pb-3">
       <div className="container mx-auto">
         <div className="navbar">
-          <div className="flex-1  ">
+          <div className="flex-1 max-470:w-[90px] ">
             <Link href="/" className="btn btn-ghost text-3xl max-629:text-lg max-470:scale-75 max-470:-mr:2">VikButton</Link>
           </div>
-          <div className="flex-none">
+          <div className="flex max-470:w-[220px]">
             <ul className="menu menu-horizontal px-1 items-center">
               {user && (
                 <>
@@ -24,7 +24,7 @@ export default async function Header() {
                   </li>
                   <li className="max-470:mr-0 max-470:-ml-0 ">
                   </li>
-                  <li className="max-470:-mr-3 max-470:ml-0">
+                  <li className="max-470:-mr-3 max-470:ml-0 max-470:w-[75px]">
                     <form action={logout} className="btn max-629:w-24 max-470:scale-75">
                       <button className="text-xl max-629:text-sm max-629:w-24 "> <Power className="inline max-629:hidden " /> Log Out</button>
                     </form>
@@ -33,11 +33,11 @@ export default async function Header() {
               )}
               {!user && (
                 <li className="">
-                  <Link href="/login" className="btn text-xl"> Log in</Link>
+                  <Link href="/login" className="btn text-xl max-629:w-24 max-470:scale-75"> Log in</Link>
                 </li>
               )}
-              <li>
-                <ThemeToggle className="ml-0" />
+              <li className="w-[40px]" >
+                <ThemeToggle className="mr-0"/>
               </li>
             </ul>
           </div>

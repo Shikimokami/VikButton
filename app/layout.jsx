@@ -9,10 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <Header className="shadow-xl max-629:text-md" />
+      <body className="min-h-screen bg-gray-100 dark:bg-gray-900 ">
+        <Header className="shadow-xl max-629:text-md " />
         <main className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">{children}</main>
-        <footer className="bg-gray-300  text-gray-600 dark:bg-gray-800 dark:text-gray-400 text-center texxt-xs py-5">
+        <footer className="bg-gray-300  text-gray-600 dark:bg-gray-800 dark:text-gray-400 text-center texxt-xs py-5 ">
           <p>Copyright &copy; {new Date().getFullYear()} - All Rights Reserved.</p>
         </footer>
       </body>
