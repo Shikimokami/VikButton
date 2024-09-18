@@ -47,6 +47,7 @@ export default async function Dashboard(props) {
                                     <Trash2 className="h-4 w-4 mr-2 inline" />
                                     Delete
                                 </button>
+                                
                             </form>
                         </div>
                     </div>

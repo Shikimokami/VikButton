@@ -1,5 +1,6 @@
 import "./global.css"
 import Header from "../components/Header.jsx"
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: 'Next.js',
