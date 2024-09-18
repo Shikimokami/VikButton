@@ -41,9 +41,9 @@ export default async function Dashboard(props) {
                                     Add friend
                                 </button>
                             </form>
-                            <form action={deleteHaiku} className="flex-shrink-0 ">
+                            <form action={deleteHaiku} className="flex-shrink-0  max-470:w-[100%]">
                                 <input name="id" type="hidden" defaultValue={haiku._id.toString()} />
-                                <button className=" btn-xl max-1010:btn-md bg-red-500 text-white p-4 rounded hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-800 inline">
+                                <button className="max-470:mt-6 max-470:w-[100%] btn-xl max-1010:btn-md bg-red-500 text-white p-4 rounded hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-800 inline">
                                     <Trash2 className="h-4 w-4 mr-2 inline" />
                                     Delete
                                 </button>
