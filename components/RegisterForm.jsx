@@ -7,7 +7,7 @@ export default function RegisterForm() {
 
     
     return (
-      <form action={formAction} className="max-w-xs mx-auto bg-slate-300 p-6 rounded-lg shadow-lg h-auto flex flex-col items-center">
+      <form action={formAction} className=" mt-6 max-w-xs mx-auto bg-slate-300 dark:bg-gray-800 p-6 rounded-lg shadow-lg h-auto flex flex-col items-center">
     <div className="mb-4 w-full">
         <input 
             name='username' 

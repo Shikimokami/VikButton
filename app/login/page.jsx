@@ -7,8 +7,8 @@ export default function Page() {
     const [formState, formAction] = useFormState(login, {})
     return (
 <>
-  <h2 className="text-center text-2xl text-gray-600 mb-5">Log In</h2>
-  <form action={formAction} className="max-w-xs mx-auto bg-slate-300 p-6 rounded-lg shadow-lg flex flex-col items-center">
+  <h2 className="text-center text-2xl text-gray-600 dark:text-gray-400 mb-5 mt-52"><strong>Log In</strong></h2>
+  <form action={formAction} className="max-w-xs mx-auto bg-slate-300 dark:bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col items-center mt-6">
     <div className="mb-4 w-full">
       <input 
         name='username' 
@@ -47,7 +47,7 @@ export default function Page() {
       
     </div>
     <button className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-      Submit
+      Login
     </button>
   </form>
 </>

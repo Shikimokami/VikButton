@@ -15,7 +15,7 @@ export default async function Page() {
             {user && <Dashboard user={user} />}
             {!user && (
                 <>
-                    <p className='text-center text-2xl text-gray-600 dark:text-gray-400 mb-5'>Don&rsquo;t have an account? <strong>Create one</strong> </p>
+                    <p className='text-center text-2xl text-gray-600 dark:text-gray-400 mb-5 mt-52'>Don&rsquo;t have an account? <strong>Create one</strong> </p>
                     <RegisterForm />
 
                 </>
