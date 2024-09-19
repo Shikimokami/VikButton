@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb"
 import { getCollection } from "../lib/db"
 import HaikuTimer from "./HaikuTimer"
 import { addFriend, deleteHaiku, updateHaikuTime } from "../actions/haikuController"
-import { PlusCircle, Trash2 } from "lucide-react"
+import {  Trash2 } from "lucide-react"
 import SubmitButton from "./SubmitButton"
 
 async function getHaikus(id) {
