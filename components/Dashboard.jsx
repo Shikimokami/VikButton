@@ -3,6 +3,7 @@ import { getCollection } from "../lib/db"
 import HaikuTimer from "./HaikuTimer"
 import { addFriend, deleteHaiku, updateHaikuTime } from "../actions/haikuController"
 import { PlusCircle, Trash2 } from "lucide-react"
+import SubmitButton from "./SubmitButton"
 
 async function getHaikus(id) {
     const collection = await getCollection("haikus")
@@ -34,12 +35,10 @@ export default async function Dashboard(props) {
 
                         <div className="flex justify-between mt-6 flex-wrap">
                             <form action={addFriend} className="flex-shrink-0 max-w-full">
-                                <input type="text" autoComplete="off" className="max-1010:w-[150px] text-stone-900 bg-slate-300 dark:bg-slate-600 dark:text-white p-2 mr-2 border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 " name="friendname" placeholder="Friend's username" />
+                                <input type="text" autoComplete="off" className="max-1010:w-[150px] text-stone-900 bg-slate-300 dark:bg-slate-600 dark:text-white p-2 mr-2 border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 " name="friendname" placeholder="Friend's username" defaultValue="" />
                                 <input name="id" type="hidden" defaultValue={haiku._id.toString()} />
-                                <button className="inline btn-xl max-1010:btn-md bg-blue-500 text-white p-4 rounded hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-800">
-                                    <PlusCircle className="h-4 w-4 mr-2 inline" />
-                                    Add friend
-                                </button>
+                                    <SubmitButton className="inline btn-xl max-1010:btn-md bg-blue-500 text-white p-4 rounded hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-800" />
+
                             </form>
                             <form action={deleteHaiku} className="flex-shrink-0  max-1010:w-[100%]">
                                 <input name="id" type="hidden" defaultValue={haiku._id.toString()} />

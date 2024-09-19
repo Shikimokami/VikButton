@@ -1,6 +1,7 @@
 "use client"
 import {useFormState, useFormStatus} from 'react-dom'
 import { register } from '../actions/userController.js'
+import SubmitButton from './SubmitButton.jsx'
 
 export default function RegisterForm() {
     const [formState, formAction] = useFormState(register, {})
@@ -62,9 +63,7 @@ export default function RegisterForm() {
             </div>
         )}
     </div>
-    <button className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        Create Account
-    </button>
+        <SubmitButton/>
 </form>
 
     )

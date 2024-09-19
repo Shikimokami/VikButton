@@ -1,6 +1,7 @@
 "use client"
 import {createHaiku } from "../actions/haikuController"
 import { useFormState } from 'react-dom'
+import SubmitButton from "./SubmitButton"
 
 export default function HaikuForm() {
     const [formState, formAction] = useFormState(createHaiku, {})
@@ -36,9 +37,7 @@ export default function HaikuForm() {
                     )}
                 </div>
                 
-                <button className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Submit
-                </button>
+               <SubmitButton/>
             </form>
     )
 }
