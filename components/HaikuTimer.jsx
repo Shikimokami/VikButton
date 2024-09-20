@@ -16,14 +16,10 @@ export default function HaikuTimer({ startTime, haikuId }) {
         const interval = setInterval(() => {
             const now = Date.now()
             const elapsed = now - currentStartTime
-
-            // Aplicar un retraso de 3 segundos antes de actualizar el tiempo mostrado
-            setTimeout(() => {
-                setElapsedTime(elapsed)
-            }, 3000) // Retraso de 3 segundos
+            setElapsedTime(elapsed)
         }, 1000)
 
-        // Configuración de Pusher
+        // Pusher setup
         const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY, {
             cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
         })
@@ -55,5 +51,5 @@ export default function HaikuTimer({ startTime, haikuId }) {
         return `${days}d ${hours % 24}h ${minutes % 60}m ${seconds % 60}s`
     }
 
-    return <span className='bg-blue-200 text-2xl font-semibold' >{formatTime(elapsedTime)}</span>
+    return <span>{formatTime(elapsedTime)}</span>
 }

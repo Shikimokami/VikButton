@@ -13,26 +13,6 @@ module.exports = {
         'max-629': {'max': '629px'},
         'max-470': {'max': '470px'},
       },
-      colors: {
-        'pushable-bg': 'hsl(340deg 100% 32%)',
-        'front-bg': 'hsl(345deg 100% 47%)',
-      },
-      borderRadius: {
-        '60px': '60px',
-      },
-      spacing: {
-        '42': '42px',
-      },
-      translate: {
-        '19': '-19px',
-        '8': '-8px',
-      },
-      transitionProperty: {
-        'transform': 'transform',
-      },
-      transitionDuration: {
-        '300': '300ms',  // Duración de la transición, ajusta según sea necesario
-      },
     },
   },
   plugins: [

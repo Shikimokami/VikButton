@@ -15,7 +15,7 @@ export default function PusherClient() {
     channel.bind('haiku-updated', function (data) {
       console.log('Haiku updated:');
 
-      
+      // Here you can update your client-side state or trigger a re-fetch
     });
 
     return () => {
