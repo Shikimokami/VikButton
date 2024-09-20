@@ -87,7 +87,7 @@ export const updateHaikuTime = async function (formData) {
         return redirect("/");
     }
 
-    const result = await haikusCollection.updateOne(
+    await haikusCollection.updateOne(
         { _id: ObjectId.createFromHexString(haikuId) },
         { $set: { startTime: Date.now() } }
     );
