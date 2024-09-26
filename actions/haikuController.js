@@ -9,9 +9,10 @@ import { pusher } from "../lib/pusher"
 
 
 function isAlphaNumericWithBasics(text) {
-    const regex = /^{az-A-Z0-9 .,}*$/
+    const regex = /^[a-zA-Z0-9 .,]*$/
     return regex.test(text)
 }
+
 
 async function sharedHaikuLogic(formData, user) {
     const errors = {}
@@ -104,45 +105,55 @@ export const updateHaikuTime = async function (formData) {
 
 export const addFriend = async function (formData) {
     const user = await getUserFromCookie()
-
-
-
     if (!user) {
-        return redirect("/")
-
+        return { error: "User not authenticated" }
     }
+
     const usersCollection = await getCollection("users")
     const haikusCollection = await getCollection("haikus")
-    let haikuId = formData.get("id")
+    const haikuId = formData.get("id")
+    const friendUsername = formData.get("friendname")
 
-
-    if (typeof haikuId != "string") haikuId = ""
-
-    const haikuInQuestion = await haikusCollection.findOne({ _id: ObjectId.createFromHexString(haikuId) })
-
-    const friendUser = await usersCollection.findOne({ username: formData.get("friendname") })
-
-    if (!friendUser) {
-        return redirect("/")
+    if (!haikuId || typeof haikuId !== "string") {
+        return { error: "Invalid haiku ID" }
     }
 
-    const friendId = friendUser._id.toString()
-    const authorArray = haikuInQuestion.author.toString();
-    const isAuthorized = authorArray.includes(user.userId);
-
-    // Si no existe, redirigir a la homepage
-    if (!isAuthorized) {
-        redirect("/")
-
+    if (!friendUsername || typeof friendUsername !== "string") {
+        return { error: "Invalid friend username" }
     }
-    await haikusCollection.updateOne({ _id: ObjectId.createFromHexString(haikuId) },
-        { $addToSet: { author: ObjectId.createFromHexString(friendId) } })
-    return redirect("/")
 
-    
+    try {
+        const haikuInQuestion = await haikusCollection.findOne({ _id: ObjectId.createFromHexString(haikuId) })
+        if (!haikuInQuestion) {
+            return { error: "Haiku not found" }
+        }
 
+        const isAuthorized = haikuInQuestion.author.some(authorId => authorId.toString() === user.userId)
+        if (!isAuthorized) {
+            return { error: "Not authorized to modify this haiku" }
+        }
+
+        const friendUser = await usersCollection.findOne({ username: friendUsername })
+        if (!friendUser) {
+            return { error: "Friend not found" }
+        }
+
+        const friendId = friendUser._id
+        if (haikuInQuestion.author.some(authorId => authorId.equals(friendId))) {
+            return { error: "User is already an author of this haiku" }
+        }
+
+        await haikusCollection.updateOne(
+            { _id: ObjectId.createFromHexString(haikuId) },
+            { $addToSet: { author: friendId } }
+        )
+
+        return { success: "Friend added successfully" }
+    } catch (error) {
+        console.error("Error in addFriend:", error)
+        return { error: "An unexpected error occurred" }
+    }
 }
-
 export const deleteHaiku = async function (formData) {
     const user = await getUserFromCookie()
 

@@ -15,7 +15,7 @@ export default function HaikuTimer({ startTime, haikuId }) {
 
         const interval = setInterval(() => {
             const now = Date.now()
-            const elapsed = now - currentStartTime
+            const elapsed = Math.max(0, now - currentStartTime)
             setElapsedTime(elapsed)
         }, 1000)
 
@@ -28,7 +28,9 @@ export default function HaikuTimer({ startTime, haikuId }) {
         channel.bind('haiku-updated', function (data) {
             if (data.haikuId === haikuId) {
                 console.log('Updating timer for haiku:', haikuId)
-                setCurrentStartTime(data.startTime)
+                // Asegúrate de que startTime esté en milisegundos y en la misma zona horaria
+                const newStartTime = new Date(data.startTime).getTime()
+                setCurrentStartTime(newStartTime)
             }
         })
 
