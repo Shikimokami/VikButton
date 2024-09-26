@@ -5,6 +5,7 @@ import { addFriend, deleteHaiku, updateHaikuTime } from "../actions/haikuControl
 import {  Trash2 } from "lucide-react"
 import SubmitButton from "./SubmitButton"
 
+
 async function getHaikus(id) {
     const collection = await getCollection("haikus")
     const results = await collection.find({ author: ObjectId.createFromHexString(id) }).sort({ startTime: -1 }).toArray()

@@ -1,6 +1,6 @@
 "use client"
 
-import { redirect } from "next/navigation"
+
 import React, { useEffect } from "react"
 import {useFormStatus} from "react-dom"
 
@@ -18,7 +18,7 @@ export default function SubmitButton() {
         </button>
     )
 
-    redirect("/")
+
 
     
 
