@@ -19,7 +19,6 @@ export default function HaikuTimer({ startTime, haikuId }) {
             setElapsedTime(elapsed)
         }, 1000)
 
-        // Pusher setup
         const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY, {
             cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
         })
