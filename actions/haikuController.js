@@ -87,15 +87,18 @@ export const updateHaikuTime = async function (formData) {
         return redirect("/");
     }
 
+
+    const newStartTime = Date.now();
+
     const result = await haikusCollection.updateOne(
         { _id: ObjectId.createFromHexString(haikuId) },
-        { $set: { startTime: Date.now() } }
+        { $set: { startTime: newStartTime } }
     );
 
     // Trigger Pusher event
     await pusher.trigger('haiku-channel', 'haiku-updated', {
         haikuId: haikuId,
-        startTime: Date.now()
+        startTime: newStartTime
     });
 
     return redirect("/");
@@ -139,7 +142,7 @@ export const addFriend = async function (formData) {
         { $addToSet: { author: ObjectId.createFromHexString(friendId) } })
     return redirect("/")
 
-    
+
 
 }
 
