@@ -1,32 +1,30 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 
 export default function HaikuTimer({ startTime, haikuId }) {
   const [elapsedTime, setElapsedTime] = useState(0);
-  const startTimeRef = useRef(startTime);
+  const [startTimeState, setStartTimeState] = useState(startTime);
 
   useEffect(() => {
-    if (!startTimeRef.current || isNaN(startTimeRef.current)) {
-      console.error("Invalid startTime:", startTimeRef.current);
+    if (!startTimeState || isNaN(startTimeState)) {
+      console.error("Invalid startTime:", startTimeState);
       return;
     }
 
-    // Clear any existing interval
     let interval = setInterval(updateElapsedTime, 1000);
 
-    // Pusher setup
     const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY, {
       cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
     });
 
     const channel = pusher.subscribe("haiku-channel");
-    
+
     const handleUpdate = (data) => {
       if (data.haikuId === haikuId) {
         console.log("Updating timer for haiku:", haikuId);
-        startTimeRef.current = new Date(data.startTime).getTime();
+        setStartTimeState(new Date(data.startTime).getTime());
         setElapsedTime(0); // Reset elapsed time
       }
     };
@@ -35,7 +33,7 @@ export default function HaikuTimer({ startTime, haikuId }) {
 
     function updateElapsedTime() {
       const now = Date.now();
-      const elapsed = Math.max(0, now - startTimeRef.current);
+      const elapsed = Math.max(0, now - startTimeState);
       setElapsedTime(elapsed);
     }
 
@@ -44,7 +42,7 @@ export default function HaikuTimer({ startTime, haikuId }) {
       channel.unbind("haiku-updated", handleUpdate);
       pusher.unsubscribe("haiku-channel");
     };
-  }, [haikuId]);
+  }, [haikuId, startTimeState]);
 
   const formatTime = (ms) => {
     if (isNaN(ms)) {
