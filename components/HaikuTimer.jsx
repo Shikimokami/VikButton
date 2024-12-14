@@ -1,48 +1,43 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Pusher from "pusher-js";
 
 export default function HaikuTimer({ startTime, haikuId }) {
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [startTimeState, setStartTimeState] = useState(startTime);
+  const startTimeRef = useRef(startTime);
 
   useEffect(() => {
-    if (!startTimeState || isNaN(startTimeState)) {
-      console.error("Invalid startTime:", startTimeState);
+    if (!startTimeRef.current || isNaN(startTimeRef.current)) {
+      console.error("Invalid startTime:", startTimeRef.current);
       return;
     }
 
-    let interval = setInterval(updateElapsedTime, 1000);
+    const interval = setInterval(() => {
+      const now = Date.now();
+      const elapsed = Math.max(0, now - startTimeRef.current);
+      setElapsedTime(elapsed);
+    }, 1000);
 
     const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY, {
       cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
     });
 
     const channel = pusher.subscribe("haiku-channel");
-
-    const handleUpdate = (data) => {
+    channel.bind("haiku-updated", function (data) {
       if (data.haikuId === haikuId) {
         console.log("Updating timer for haiku:", haikuId);
-        setStartTimeState(new Date(data.startTime).getTime());
-        setElapsedTime(0); // Reset elapsed time
+        const newStartTime = new Date(data.startTime).getTime();
+        startTimeRef.current = newStartTime;
+        setElapsedTime(0); // Reset elapsed time immediately
       }
-    };
-
-    channel.bind("haiku-updated", handleUpdate);
-
-    function updateElapsedTime() {
-      const now = Date.now();
-      const elapsed = Math.max(0, now - startTimeState);
-      setElapsedTime(elapsed);
-    }
+    });
 
     return () => {
       clearInterval(interval);
-      channel.unbind("haiku-updated", handleUpdate);
       pusher.unsubscribe("haiku-channel");
     };
-  }, [haikuId, startTimeState]);
+  }, [haikuId]);
 
   const formatTime = (ms) => {
     if (isNaN(ms)) {
