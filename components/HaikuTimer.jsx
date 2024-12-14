@@ -13,28 +13,35 @@ export default function HaikuTimer({ startTime, haikuId }) {
       return;
     }
 
-    const interval = setInterval(() => {
-      const now = Date.now();
-      const elapsed = Math.max(0, now - startTimeRef.current);
-      setElapsedTime(elapsed);
-    }, 1000);
+    // Clear any existing interval
+    let interval = setInterval(updateElapsedTime, 1000);
 
+    // Pusher setup
     const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY, {
       cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
     });
 
     const channel = pusher.subscribe("haiku-channel");
-    channel.bind("haiku-updated", function (data) {
+    
+    const handleUpdate = (data) => {
       if (data.haikuId === haikuId) {
         console.log("Updating timer for haiku:", haikuId);
-        const newStartTime = new Date(data.startTime).getTime();
-        startTimeRef.current = newStartTime;
-        setElapsedTime(0); // Reset elapsed time immediately
+        startTimeRef.current = new Date(data.startTime).getTime();
+        setElapsedTime(0); // Reset elapsed time
       }
-    });
+    };
+
+    channel.bind("haiku-updated", handleUpdate);
+
+    function updateElapsedTime() {
+      const now = Date.now();
+      const elapsed = Math.max(0, now - startTimeRef.current);
+      setElapsedTime(elapsed);
+    }
 
     return () => {
       clearInterval(interval);
+      channel.unbind("haiku-updated", handleUpdate);
       pusher.unsubscribe("haiku-channel");
     };
   }, [haikuId]);
