@@ -12,7 +12,7 @@ export default async function Page() {
         <>
           <p className="text-center text-2xl text-gray-600 dark:text-gray-400 mb-5 mt-52">
             Don&rsquo;t have an account? <strong>Create one</strong>{" "} <br />
-            <span className="textarea-md text-blue-100 italic">Please, this is a demo web, use a dummy password</span>
+            <span className="textarea-md italic text-gray-600 dark:text-gray-400 mb-5 mt-52 ">Please, this is a demo web, use a dummy password</span>
           </p>
           <RegisterForm />
         </>
