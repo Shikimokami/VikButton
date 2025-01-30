@@ -20,6 +20,7 @@ export default function PusherClient() {
 
     return () => {
       pusher.unsubscribe('haiku-channel');
+      
     };
   }, []);
 
