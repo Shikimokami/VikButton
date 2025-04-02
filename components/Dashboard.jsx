@@ -8,6 +8,7 @@ import {
 } from "../actions/haikuController";
 import { Trash2 } from "lucide-react";
 import SubmitButton from "./SubmitButton";
+import SoundButton from "./SoundButton";
 
 async function getHaikus(id) {
   const collection = await getCollection("haikus");
@@ -38,21 +39,24 @@ export default async function Dashboard(props) {
                 {haiku.objectivename.toUpperCase()}
               </p>
             </div>
-            <div className="flex-1 flex justify-center items-center text-gray-600 dark:text-gray-400 p-4">
-              <form action={updateHaikuTime} className="flex-shrink-0">
-
+            <div className="flex-1 flex items-center flex-col justify-center  text-gray-600 dark:text-gray-400 p-4">
+     
                 <input
                   name="id"
                   type="hidden"
                   defaultValue={haiku._id.toString()}
                 />
-                <button className="bg-green-400 text-white font-semibold p-6 rounded-xl text-4xl transition duration-300 ease-in-out hover:bg-red-600 hover:shadow-lg transform hover:scale-105 dark:bg-green-600 dark:hover:bg-red-700">
-                  <HaikuTimer
-                    startTime={haiku.startTime}
-                    haikuId={haiku._id.toString()}
-                  />
-                </button>
-              </form>
+
+                <SoundButton
+                  haikuId={haiku._id.toString()}
+                  updateHaikuTime={updateHaikuTime}
+                />
+                <HaikuTimer
+               
+                  startTime={haiku.startTime}
+                  haikuId={haiku._id.toString()}
+                />
+         
             </div>
 
             <div className="flex justify-between mt-6 flex-wrap">

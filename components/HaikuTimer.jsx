@@ -52,5 +52,5 @@ export default function HaikuTimer({ startTime, haikuId }) {
     return `${days}d ${hours % 24}h ${minutes % 60}m ${seconds % 60}s`;
   };
 
-  return <span>{formatTime(elapsedTime)}</span>;
+  return <span className=" mt-3 font-semibold text-4xl flex flex-col justify-center items-center dark:text-gray-200 text-gray-400" >{formatTime(elapsedTime)}</span>;
 }
